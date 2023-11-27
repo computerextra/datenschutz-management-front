@@ -19,10 +19,15 @@ type Role = {
   id: string;
   name: string;
 };
-type Role = {
+type User = {
   id: string;
-  name: string;
+  name: string | null;
+  mail: string | null;
+  password: string | null;
+  roleId: string;
+  token: string;
 };
+
 type AVVList = {
   id: string;
   kundennummer: string;
