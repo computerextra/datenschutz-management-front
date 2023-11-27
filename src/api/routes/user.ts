@@ -1,4 +1,6 @@
+import { v5 } from "uuid";
 import client from "../api";
+import { env } from "../env";
 import { UserResponse } from "../types";
 
 const url = "/user";
@@ -13,10 +15,12 @@ export const getUser = async (id: string): Promise<UserResponse> => {
   return data;
 };
 
-export const createUser = async (name: string, mail: string | undefined): Promise<UserResponse> => {
+export const createUser = async (name: string, mail: string | undefined, password: string): Promise<UserResponse> => {
+  const pass = v5(password, env.SHARED_SECRET);
   const { data } = await client.post<UserResponse>(url + "/new", {
     name,
     mail,
+    pass,
   });
   return data;
 };

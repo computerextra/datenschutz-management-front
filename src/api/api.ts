@@ -1,10 +1,8 @@
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { env } from "./env";
 
 const client = axios.create({
-  baseURL: process.env.API_URL || "http://localhost:3001",
+  baseURL: env.API_URL,
 });
 
 export default client;
