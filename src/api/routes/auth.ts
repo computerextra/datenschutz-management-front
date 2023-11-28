@@ -12,7 +12,7 @@ export const logIn = async (mail: string, pass: string): Promise<string | User |
     password,
   });
   if (data.message && (data.message === "No User Found" || data.message.startsWith("ERROR:"))) {
-    return "Failed";
+    return data.message;
   } else {
     return data.user;
   }

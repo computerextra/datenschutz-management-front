@@ -1,6 +1,6 @@
 import { v5 } from "uuid";
 import client from "../api";
-import { UserResponse } from "../types";
+import { GetUserResponse, UserResponse } from "../types";
 
 const url = "/user";
 
@@ -9,18 +9,19 @@ export const getUsers = async (): Promise<UserResponse> => {
   return data;
 };
 
-export const getUser = async (id: string): Promise<UserResponse> => {
-  const { data } = await client.get<UserResponse>(url + `/${id}`);
+export const getUser = async (id: string): Promise<GetUserResponse> => {
+  const { data } = await client.get<GetUserResponse>(url + `/${id}`);
   return data;
 };
 
-export const createUser = async (name: string, mail: string | undefined, password: string): Promise<UserResponse> => {
+export const createUser = async (name: string, mail: string | undefined, password: string): Promise<GetUserResponse> => {
   const pass = v5(password, import.meta.env.VITE_SHARED_SECRET);
-  const { data } = await client.post<UserResponse>(url + "/new", {
+  const { data } = await client.post<GetUserResponse>(url + "/new", {
     name,
     mail,
-    pass,
+    password: pass,
   });
+  console.log(data);
   return data;
 };
 

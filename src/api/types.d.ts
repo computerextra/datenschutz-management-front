@@ -44,8 +44,21 @@ export interface RoleResponse extends MessageResponse {
   role: Role | Role[] | null;
 }
 
+type UserWithRole =
+  | ({
+      role: {
+        id: string;
+        name: string;
+      };
+    } & User)
+  | null;
+
 export interface UserResponse extends MessageResponse {
-  user: User | User[] | null;
+  user: UserWithRole | User | User[] | null;
+}
+
+export interface GetUserResponse extends MessageResponse {
+  user: UserWithRole | User | null;
 }
 
 export interface AvvListResponse extends MessageResponse {
