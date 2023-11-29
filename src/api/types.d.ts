@@ -54,7 +54,7 @@ type UserWithRole =
   | null;
 
 export interface UserResponse extends MessageResponse {
-  user: UserWithRole | User | User[] | null;
+  user: UserWithRole | UserWithRole[] | User | User[] | null;
 }
 
 export interface GetUserResponse extends MessageResponse {
